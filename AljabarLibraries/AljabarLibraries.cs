@@ -8,20 +8,19 @@
             double b = persamaan[1];
             double c = persamaan[2];
 
-            double determin = b * b - 4 * a * c;
+            double akar1, akar2;
+            double determinant = ((b * b) - (4 * (a * c)));
 
-            if (determin >= 0)
+            if (determinant >= 0)
             {
-                double sqrt = Math.Sqrt(determin);
-                double akar1 = (-b + sqrt) / (2 * a);
-                double akar2 = (-b - sqrt) / (2 * a);
-                return new double[] { akar1, akar2 };
+                akar1 = (-b + Math.Sqrt(determinant)) / (2 * a);
+                akar2 = (-b - Math.Sqrt(determinant)) / (2 * a);
             }
             else
             {
-                Console.WriteLine("Persamaan tidak menghasilkan akar real");
                 return new double[0];
             }
+            return new double[] { akar1, akar2 };
         }
 
         public double[] HasilKuadrat(double[] persamaan)
@@ -31,15 +30,14 @@
 
             for (int i = 0; i < n; i++)
             {
-                double coefficient = persamaan[i];
-                result[2 * i] += coefficient * coefficient;
+                double koef = persamaan[i];
+                result[2 * i] += koef * koef;
 
-                for (int j = 1; j < n; j++)
+                for (int j = i + 1; j < n; j++)
                 {
-                    result[i + j] += 2 * coefficient * persamaan[j];
+                    result[i + j] += 2 * koef * persamaan[j];
                 }
             }
-
             return result;
         }
     }
